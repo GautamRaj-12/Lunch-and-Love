@@ -1,4 +1,5 @@
 import React from 'react';
+import { IMG_CDN_URL } from './Config';
 
 const RestaurantCard = ({
   name,
@@ -11,7 +12,7 @@ const RestaurantCard = ({
     <>
       <div className='flex-wrap border-2 restaurant-card w-[15%]'>
         <img
-          src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
+          src={IMG_CDN_URL + cloudinaryImageId}
           alt=''
           className='h-32 rounded w-[100%]'
         />
