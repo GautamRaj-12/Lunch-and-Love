@@ -15,14 +15,25 @@ const Restaurants = () => {
       'https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.572646&lng=88.36389500000001&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
     );
     const jsonData = await dataFetched.json();
-    setRestaurants(
-      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    setFilteredRestaurants(
-      jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
+    const cards = jsonData?.data?.cards;
+
+    const targetCardIndex = cards.findIndex((card) => {
+      return (
+        card?.card?.card?.gridElements?.infoWithStyle?.restaurants !== undefined
+      );
+    });
+    if (targetCardIndex !== -1) {
+      setRestaurants(
+        cards[targetCardIndex]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setFilteredRestaurants(
+        cards[targetCardIndex]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    } else {
+      console.error('Something went wrong');
+    }
   };
 
   //on changing input
