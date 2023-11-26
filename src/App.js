@@ -1,14 +1,13 @@
 import './App.css';
 import Header from './components/Header';
-import RestaurantCard from './components/RestaurantCard';
 import Restaurants from './components/Restaurants';
-import About from './components/About';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <>
       <Header />
-      <Restaurants />
+      <Outlet />
     </>
   );
 }
